@@ -2,6 +2,7 @@ class Solution:
     def areAlmostEqual(self, s1: str, s2: str) -> bool:
         if set(s1) != set(s2):
             return False
+            
 
 
         res = 0
