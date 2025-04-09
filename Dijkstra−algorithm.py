@@ -46,3 +46,33 @@ class Solution:
                     best[(nei, flights_used +1)] = new_cost
                     heapq.heappush(heap, (new_cost, nei, flights_used + 1))
         return -1
+
+
+# 815. Bus Routes
+class Solution:
+    def numBusesToDestination(self, routes: List[List[int]], source: int, target: int) -> int:
+        busStop = collections.defaultdict(set)
+        for i, route in enumerate(routes):
+            for j in route:
+                busStop[j].add(i)
+                
+                
+        queue = deque()
+        queue.append([source, 0])
+        visited = set([source])
+        
+        while queue:
+            cur_stop, step = queue.popleft()
+            if cur_stop == target:
+                return step
+            
+            for bus in busStop[cur_stop]:
+                for stop in routes[bus]:
+                    if stop not in visited:
+                        queue.append([stop, step + 1])
+                        visited.add(stop)
+                routes[bus] = []       
+        return -1
+                
+                
+        
